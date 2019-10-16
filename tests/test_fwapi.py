@@ -35,10 +35,10 @@ class TestFilm(unittest.TestCase):
         """
         results = list(Film.search("terminator", max_page=3))
         single_film = results[0]
-        self.assertEqual(len(results), 30)
+        self.assertEqual(len(results), 28)
         self.assertIsInstance(single_film, Film)
-        self.assertEqual(single_film.title, "Terminator")
-        self.assertEqual(single_film.url, "http://www.filmweb.pl/Terminator")
+        self.assertEqual(single_film.title, "Terminator: Mroczne przeznaczenie")
+        self.assertEqual(single_film.url, "http://www.filmweb.pl/film/Terminator%3A+Mroczne+przeznaczenie-2019-723372")
         
     def test_search_no_results(self):
         results = list(Film.search("sdfghjfghj"))
@@ -111,9 +111,9 @@ class TestFilm(unittest.TestCase):
 
     def test_populate_film(self):
         self.example.populate()
-        expected_actors = {'Catherine Keener': 'Maxine', 'Gregory Sporleder': 'Meżczyzna w barze',
+        expected_actors = {'Catherine Keener': 'Maxine Lund', 'Gregory Sporleder': 'Meżczyzna w barze',
                     'John Cusack': 'Craig Schwartz', 'Willie Garson': 'Facet w restauracji',
-                    'W. Earl Brown': 'Erroll', 'Orson Bean': 'Dr Lester',
+                    'W. Earl Brown': 'Pierwszy klient J.M. Inc.', 'Orson Bean': 'Dr Lester',
                     'Cameron Diaz': 'Lotte Schwartz', 'Mary Kay Place': 'Floris'}
         expected_description = "Pracownik odnajduje w swoim biurze drzwi prowadzące do " \
                                "świadomości znanego aktora - Johna Malkovicha."

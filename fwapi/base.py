@@ -24,15 +24,15 @@ class FilmwebObject:
                                                                         phrase, page)
 
             soup = make_request(url)
-            results = soup.select("a.hitTitle")
+            results = soup.select("a.filmPreview__link")
             for res in results:
                 obj = None
                 name = res.text.strip()
                 link = "http://www.filmweb.pl" + res["href"]
                 
                 if cls.__name__ == "Film":
-                    year = int(res.next_sibling.text.strip("(").strip(")"))
-                    id_ = res.parent.parent.parent.parent["id"].strip("film_")
+                    year = int(res.next_sibling.next_sibling.text)
+                    id_ = int(res.parent.parent.parent.parent["data-id"])
                     obj = cls(title=name, url=link, year=int(year), id_=int(id_))
                     
                 elif cls.__name__ == "Person":
